@@ -1,0 +1,2 @@
+DATABASE_URI= <<mongo uri here>>
+PORT= <<port number here>>
