@@ -5,12 +5,13 @@ const router = express.Router();
 const Log = require("../models/foodLog.model");
 
 router.post("/", async (req, res) => {
+  console.log("posttt");
   try {
-    newFood = new Log(req.body).save((err) => {
+    const doc = new Log(req.body);
+    const newFood = doc.save((err) => {
       if (err) throw err;
-      else console.log("New food added to food log");
     });
-    return res.status(201).json({ errors: ["none"] });
+    return res.sendStatus(201);
   } catch (err) {
     console.error("Error with  posting food log request ", err);
     return res
@@ -20,13 +21,13 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  // console.log(req);
   try {
     const allLogs = await Log.find((err) => {
       if (err) throw err;
     });
-    return res.status(201).send(allLogs);
+    return res.status(201).json({ body: allLogs });
   } catch (err) {
+    console.log(err);
     return res
       .status(401)
       .json({ errors: ["Error with getting all food logs"] });

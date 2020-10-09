@@ -13,8 +13,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: true }));
 
-app.use("/recipes", recipesRouter);
-app.use("/food-log", foodLogRouter);
+app.use("/api/recipes", recipesRouter);
+app.use("/api/food-log", foodLogRouter);
 
 mongoose.connect(DATABASE_URI, {
   useFindAndModify: false,

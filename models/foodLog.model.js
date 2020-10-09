@@ -6,6 +6,7 @@ const LogSchema = new Schema({
   date: { type: String, require: [true, "Must have a date to store"] },
   meal: { type: String },
   rating: { type: Number },
+  description: { type: String, maxLength: 200 },
 });
 // future carbs, fibger, fats, proteins, quantity
 // validation check
