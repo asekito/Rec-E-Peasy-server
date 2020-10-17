@@ -17,37 +17,20 @@ exports.pool = mysql.createPool({
 
 require("./sql/db_initialize");
 
-// const mongoose = require("mongoose");
-// const {Client} = require("pg");
-// const client = new Client();
+const recipesRouter = require("./routers/recipes");
+const getAllCookLogRoute = require("./routers/cooklog/get-all-cook-log");
 
-
-const { DATABASE_URI, environment, PORT } = require("./config/index");
-
-const getAllRecipesRoute = require("./routers/recipes/get-all-recipes");
-const postRecipeRoute = require("./routers/recipes/add-recipe");
-const foodLogRouter = require("./routers/foodLogRouter");
-// app.use(express.static(path.join(__dirname, "../client/public/dist")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: true }));
 
-app.use("/api/recipes/get-all-recipes", getAllRecipesRoute);
-app.use("/api/recipes/post-recipe", postRecipeRoute);
-app.use("/api/food-log", foodLogRouter);
+app.use("/api/recipes/", recipesRouter);
+app.use("/api/cooklog/get-all-cooklogs", getAllCookLogRoute);
 
-// mongoose.connect(DATABASE_URI, {
-//   useFindAndModify: false,
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
 
-// (async() => {
-//   await client.connect();
+app.listen(process.env.PORT, () => console.log(`Listening on http://localhost:${process.env.PORT}/`));
 
-//   const res = await client.query("SELECT * FROM recipes");
-//   console.log(res);
-//   await client.end();
-// })()
+// require("./routers/recipes/add-recipe");
+// require("./routers/recipes/get-all-recipes");
 
-app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}/`));
+// require("./routers/cooklog/get-all-cook-log");
