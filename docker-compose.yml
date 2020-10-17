@@ -1,0 +1,11 @@
+version: "3.1"
+
+services:
+  db:
+    image: postgres
+    ports:
+      - 3306
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: recepeasy
+      POSTGRES_PASSWORD: password
