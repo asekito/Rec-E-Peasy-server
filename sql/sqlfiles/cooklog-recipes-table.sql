@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS recipes (
 CREATE TABLE IF NOT EXISTS cook_log (
   id INT AUTO_INCREMENT PRIMARY KEY,
   cook_log_name VARCHAR(100),
-  recipe_id INT,
+  recipe_id INT NULL,
   date VARCHAR(50),
   meal VARCHAR(10),
   rating INT,

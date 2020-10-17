@@ -2,10 +2,11 @@ version: "3.1"
 
 services:
   db:
-    image: postgres
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
     ports:
-      - 3306
+      - 3306:3306
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_DB: recepeasy
-      POSTGRES_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: recepeasy
