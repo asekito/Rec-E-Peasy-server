@@ -1,8 +1,12 @@
 const express = require("express");
 const app = express();
+const router = express.Router();
 const path = require("path");
 const cors = require("cors");
 const mysql = require("mysql");
+
+exports.router = router;
+exports.app = app;
 
 exports.pool = mysql.createPool({
   user: "root",
@@ -10,22 +14,26 @@ exports.pool = mysql.createPool({
   database: "recepeasy",
   port: 3306
 });
+
+require("./sql/db_initialize");
+
 // const mongoose = require("mongoose");
 // const {Client} = require("pg");
 // const client = new Client();
 
-require("./sql/db_initialize");
 
 const { DATABASE_URI, environment, PORT } = require("./config/index");
 
-const recipesRouter = require("./routers/recipesRouter.js");
+const getAllRecipesRoute = require("./routers/recipes/get-all-recipes");
+const postRecipeRoute = require("./routers/recipes/add-recipe");
 const foodLogRouter = require("./routers/foodLogRouter");
 // app.use(express.static(path.join(__dirname, "../client/public/dist")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: true }));
 
-app.use("/api/recipes", recipesRouter);
+app.use("/api/recipes/get-all-recipes", getAllRecipesRoute);
+app.use("/api/recipes/post-recipe", postRecipeRoute);
 app.use("/api/food-log", foodLogRouter);
 
 // mongoose.connect(DATABASE_URI, {

@@ -8,8 +8,7 @@ const rawRecipesTableSql =
   CREATE TABLE IF NOT EXISTS recipes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     recipe_name VARCHAR(100) NOT NULL UNIQUE,
-    ingredients_estimated VARCHAR(2500),
-    ingredients_measured VARCHAR(2000)
+    ingredients VARCHAR(2500)
   );
 `;
 
@@ -29,13 +28,15 @@ const rawCookLogTableSql = `
 (async() => {
   await pool.query(rawRecipesTableSql, (err, res) => {
     if (err) {
-      console.log("Error with table initialization", err);
+      return console.log("Error with table initialization", err);
     }
+    console.log("Recipes table created.");
   });
 
   await pool.query(rawCookLogTableSql, (err, res) => {
     if (err) {
       return console.log("Error with table initialization", err);
     }
+    console.log("Cook log table created.");
   })
 })()

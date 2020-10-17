@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const router = express.Router();
-
-const Recipe = require("../models/recipes.model");
+const mysql = require("mysql");
+// const Recipe = require("../models/recipes.model");
 
 router.post("/", async (req, res) => {
   try {
@@ -19,6 +19,8 @@ router.post("/", async (req, res) => {
   }
 });
 // [ ] Check if recipe already exists and send to client side to make sure they want to add it again
+
+
 
 router.get("/", async (req, res) => {
   try {
