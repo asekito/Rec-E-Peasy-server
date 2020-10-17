@@ -3,7 +3,7 @@ const {
   pool,
   app,
   router
-} = require("../../server");
+} = require("../server");
 
 const getAllCookLogSqlQuery = `
   SELECT * FROM cook_log;
