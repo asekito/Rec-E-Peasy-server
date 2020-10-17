@@ -29,8 +29,3 @@ app.use("/api/cooklog/get-all-cooklogs", getAllCookLogRoute);
 
 
 app.listen(process.env.PORT, () => console.log(`Listening on http://localhost:${process.env.PORT}/`));
-
-// require("./routers/recipes/add-recipe");
-// require("./routers/recipes/get-all-recipes");
-
-// require("./routers/cooklog/get-all-cook-log");
